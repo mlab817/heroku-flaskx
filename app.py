@@ -1,6 +1,8 @@
 # app.py
 from flask import Flask, request, jsonify, render_template, json
 from models.ltt import run_ols
+from models.cagr import run_cagr
+from models.arima import run_arima
 
 
 app = Flask(__name__)

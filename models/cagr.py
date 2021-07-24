@@ -5,7 +5,7 @@ from matplotlib import pyplot as plt
 from models.mape import mape
 
 
-def cagr(df=pd.DataFrame, column_name="", start_year=None, end_year=None, ahead=32):
+def run_cagr(df=pd.DataFrame, column_name="", start_year=None, end_year=None, ahead=32):
     """
     Function to compute compounded annual growth rate and forecast
 

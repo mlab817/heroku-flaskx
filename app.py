@@ -8,52 +8,56 @@ from models.arima import run_arima
 app = Flask(__name__)
 
 
-@app.route('/getmsg/', methods=['GET'])
-def respond():
-    # Retrieve the name from url parameter
-    name = request.args.get("name", None)
-
-    # For debugging
-    print(f"got name {name}")
-
-    response = {}
-
-    # Check if user sent a name at all
-    if not name:
-        response["ERROR"] = "no name found, please send a name."
-    # Check if the user entered a number not a name
-    elif str(name).isdigit():
-        response["ERROR"] = "name can't be numeric."
-    # Now the user entered a valid name
-    else:
-        response["MESSAGE"] = f"Welcome {name} to our awesome platform!!"
-
-    # Return the response in json format
-    return jsonify(response)
-
-
-@app.route('/post/', methods=['POST'])
-def post_something():
-    param = request.form.get('name')
-    print(param)
-    # You can add the test cases you made in the previous function, but in our case here you are just testing the POST functionality
-    if param:
-        return jsonify({
-            "Message": f"Welcome {name} to our awesome platform!!",
-            # Add this option to distinct the POST request
-            "METHOD": "POST"
-        })
-    else:
-        return jsonify({
-            "ERROR": "no name found, please send a name."
-        })
-
-
 # A welcome message to test our server
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('upload.html', shape=(32, 3))
+     response = None
+     if request.method == 'GET':
+         response = render_template('upload.html')
+     #
+     if request.method == 'POST':
+         uploaded_file = request.files.get('file')
+         # validate the uploaded files if it contains 5 columns
 
+         df = pd.read_csv(uploaded_file,
+                          thousands=',',
+                          header='infer', )
+
+         if len(df.axes[1]) != 5:
+             return 'File must have 5 columns: year, production, area harvested, yield, and per capita. Your file has %s' % str(len(df.axes[1]))
+
+         prepared_data = prepare_data(df)
+
+         ols_result = run_ols(data=prepared_data, x_var='yield', y_var='year', log=True)
+
+         if request.is_json:
+             response = jsonify(ols_result)
+         else:
+             response = ols_result
+
+     return render_template('upload.html', shape=(32, 3))
+
+
+ # TODO: Make this prepare data dynamic
+ def prepare_data(data=pd.DataFrame()):
+     """
+     Prepare uploaded data for processing by defining the correct data types
+
+     :param data:
+     :return: prepared data
+     """
+     data.columns = ["year", "production", "area_harvested", "yield", "per_capita"]
+
+     # convert data to float as sometimes the data is not of correct type (e.g. string instead of float)
+     data["production"] = pd.to_numeric(data["production"])
+     data["area_harvested"] = pd.to_numeric(data["area_harvested"])
+     data["yield"] = pd.to_numeric(data["yield"])
+     data["per_capita"] = pd.to_numeric(data["per_capita"])
+
+     # verify data types
+     data.describe()
+
+     return data
 
 if __name__ == '__main__':
     # Threaded option to enable multiple instances for multiple user access support

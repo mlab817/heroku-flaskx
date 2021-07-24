@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2e18d02e-be6b-4650-b15e-e4b861f48602" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/ltt.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/ltt.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +84,7 @@
       <workItem from="1627108714517" duration="142000" />
       <workItem from="1627108864267" duration="870000" />
       <workItem from="1627109741324" duration="13000" />
-      <workItem from="1627109816331" duration="443000" />
+      <workItem from="1627109816331" duration="1181000" />
     </task>
     <servers />
   </component>

@@ -5,6 +5,7 @@ from models.cagr import run_cagr
 from models.arima import run_arima
 
 import pandas as pd
+import simplejson
 
 app = Flask(__name__)
 
@@ -30,12 +31,12 @@ def index():
 
         prepared_data = prepare_data(df)
 
-        ols_result = run_ols(data=prepared_data, x_var='yield', y_var='year', log=True)
+        ols_result = run_ols(data=prepared_data, y_var='yield', x_var='year', log=True)
 
         if request.is_json:
-            response = jsonify(ols_result)
+            response = simplejson.dumps(ols_result, ignore_nan=True)
         else:
-            response = ols_result
+            response = simplejson.dumps(ols_result, ignore_nan=True)
 
     return response  # render_template('upload.html', shape=(32, 3))
 

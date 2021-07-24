@@ -13,4 +13,4 @@ def mape(y_actual, y_predicted):
 
     mean_absolute_percentage_error = np.mean(np.abs((y_actual - y_predicted) / y_actual))
     # print('MAPE absolute value is: ', mean_absolute_percentage_error)
-    return mean_absolute_percentage_error
+    return mean_absolute_percentage_error.round(4)

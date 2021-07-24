@@ -24,7 +24,10 @@ def run_arima(df=pd.DataFrame(), column_name=''):
     response_json = dict()
     response_json['data'] = prediction.to_dict(orient="records")
     response_json['mape'] = mape_value
-    response_json['result'] = arima_model.params
+    response_json['result'] = arima_model.params.to_dict()
+    response_json['y_variable'] = column_name
+    response_json['x_variable'] = 'year'
+    response_json['model'] = 'ARIMA'
 
     # plt.figure(figsize=(8, 5))
     # # plt.plot(train, label="Training")

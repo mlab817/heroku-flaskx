@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2e18d02e-be6b-4650-b15e-e4b861f48602" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/arima.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/arima.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/ltt.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/ltt.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/mape.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/mape.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +26,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -84,7 +90,8 @@
       <workItem from="1627108714517" duration="142000" />
       <workItem from="1627108864267" duration="870000" />
       <workItem from="1627109741324" duration="13000" />
-      <workItem from="1627109816331" duration="1654000" />
+      <workItem from="1627109816331" duration="7250000" />
+      <workItem from="1627125356178" duration="7933000" />
     </task>
     <servers />
   </component>

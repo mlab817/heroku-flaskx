@@ -50,7 +50,7 @@ def post_something():
 # A welcome message to test our server
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    return 'This is the index';
+    return render_template('upload.html', shape=(32, 3))
 
 
 if __name__ == '__main__':

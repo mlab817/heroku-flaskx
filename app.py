@@ -1,6 +1,6 @@
 # app.py
 from flask import Flask, request, jsonify, render_template, json
-
+from models.ltt import run_ols
 
 app = Flask(__name__)
 

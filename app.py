@@ -5,6 +5,9 @@ from models.cagr import run_cagr
 from models.arima import run_arima
 
 
+import pandas as pd
+
+
 app = Flask(__name__)
 
 
@@ -35,7 +38,7 @@ def index():
          else:
              response = ols_result
 
-     return render_template('upload.html', shape=(32, 3))
+     return response # render_template('upload.html', shape=(32, 3))
 
 
  # TODO: Make this prepare data dynamic

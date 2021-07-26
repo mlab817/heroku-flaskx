@@ -1,7 +1,7 @@
-import json
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import simplejson
 import statsmodels.api as sm
 import requests
 import uuid
@@ -9,7 +9,8 @@ import os
 
 from models.mape import mape
 
-url = 'http://nfcqs.test/api/handle_ltt'
+url = 'http://nfcqs.example.com/api/handle_ltt'
+url2 = 'http://nfcqs.example.com/api/handle_image_upload'
 
 
 # the log parameter determines whether the model should be run as Log Time Trend
@@ -73,8 +74,16 @@ def run_ols(data=None, y_var="", x_var="year", log=False):
     fig.savefig(fig_path)
 
     try:
-        resp = requests.post(url, headers={'Content-Type': 'application/json'}, json=json.dumps(response_json))
-        resp1 = requests.post(url, headers={'Content-Type': 'multipart/form-data'}, files={'file': open(fig_path, 'rb').read()})
+        print(simplejson.dumps(response_json, ignore_nan=True))
+        resp = requests.post(
+            url,
+            headers={'Content-Type': 'application/json'},
+            # json=simplejson.dumps(response_json, ignore_nan=True)
+            # json=response_json
+            json=format_response(response_json)
+        )
+        resp1 = requests.post(url2, headers={'Content-Type': 'multipart/form-data'},
+                              files={'file': open(fig_path, 'rb').read()})
         print(resp)
         print(resp1)
         resp.raise_for_status()
@@ -82,3 +91,12 @@ def run_ols(data=None, y_var="", x_var="year", log=False):
         print(err)
 
     return response_json
+
+
+def format_response(raw_data=None):
+    """
+    Convert response to dict() without the ignoring NaN to return json-friendly data
+    """
+    if raw_data is None:
+        raw_data = dict()
+    return simplejson.loads(simplejson.dumps(raw_data, ignore_nan=True))

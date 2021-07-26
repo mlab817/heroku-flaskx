@@ -19,7 +19,6 @@ def index():
     #
     if request.method == 'POST':
         uploaded_file = request.files.get('file')
-        # validate the uploaded files if it contains 5 columns
 
         df = pd.read_csv(uploaded_file,
                          thousands=',',
